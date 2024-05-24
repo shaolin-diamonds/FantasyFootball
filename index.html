@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="league.css">
+    <title>The League | Home</title>
+</head>
+<body>
+    <div class="bg-img">
+        <div class="container">
+            <header>
+                <span><a href="signup.html">Sign Up</a></span>
+                <span><a href="signin.html">Sign In</a></span>
+            </header>
+            <div id="content"></div>
+        </div>
+            <span><a href="signout.php" id="signOutBtn">Sign Out</a></span>
+    </div>
+    <script type="text/javascript">
+        var contentDiv = document.getElementById("content");
+
+        fetch('verifyAuth.php')
+        .then(response => response.json())
+        .then(function(data) {
+            console.log(data);
+            if(data.auth) {
+                contentDiv.innerHTML = "Welcome back " + data.username;
+            } else {
+                contentDiv.innerHTML = "Please Sign In";
+            }
+        });
+    </script>
+</body>
+</html>
